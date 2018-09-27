@@ -12,5 +12,5 @@ services:
     consul-template:
         image: "hashicorp/consul-template"
         volumes:
-        -  "/root/docker-project/conf:/conf"
+        -  "./conf:/conf"
         command: "-consul-addr '192.168.204.131:8500' -template '/conf/app.conf:/conf/app.out'"
