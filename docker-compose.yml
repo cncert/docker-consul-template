@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    consul:
+        image: "consul"
+        hostname: "consul"
+        ports:
+            - "8300:8300"
+            - "8500:8500"
+            - "8600:8600"
+        command: "consul agent -data-dir=/tmp/ -server -bootstrap  -client=0.0.0.0 -ui"
+    consul-template:
+        image: "hashicorp/consul-template"
+        volumes:
+        -  "/root/docker-project/conf:/conf"
+        command: "-consul-addr '192.168.204.131:8500' -template '/conf/app.conf:/conf/app.out'"
